@@ -68,9 +68,12 @@
     UIImage *image = [backgroundImage applyBlurWithRadius:10 tintColor:tintColor saturationDeltaFactor:1.8 maskImage:nil];
     _backgroundView.image = image;
 }
-
+// PERFORM SEGUES TO NEXT VIEWS BASED ON INDEX PATH
 - (void)optionsButton:(UIButton*)optionButton didSelectItem:(int)index{
     NSLog(@"Hello index %d tapped !", index);
+//GALLERY SEGUE
+  if (index == 1) {
+        [self performSegueWithIdentifier:@"YOUR NEXT VIEW" sender: self];
 }
-
+}
 @end
