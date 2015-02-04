@@ -33,6 +33,7 @@ static const float collapseAnimationDuration = 0.5;
 @property(nonatomic,strong) UIView *backgroundView;
 @property(nonatomic,strong) UIDynamicAnimator *dynamicsAnimator;
 @property(nonatomic,strong) UIDynamicBehavior *dynamicBehaviour;
+@property (assign, nonatomic) CGPoint mainBtnCustomOrigin;
 
 @property(nonatomic,weak) UIViewController *parentViewController;
 
@@ -73,7 +74,11 @@ static const float collapseAnimationDuration = 0.5;
     }
 }
 
-
+- (void) setUpChoices:(UIViewController*) parentViewController choices:(NSArray*) choices withMainButtonImage:(UIImage*)mainButtonImage andMainButtonCustomOrigin:(CGPoint)customOrigin
+{
+    _mainBtnCustomOrigin=customOrigin;
+    [self setUpChoices:parentViewController choices:choices withMainButtonImage:mainButtonImage];
+}
 - (void) setUpChoices:(UIViewController*) parentViewController choices:(NSArray*) choices withMainButtonImage:(UIImage*)mainButtonImage{
     _parentViewController = parentViewController;
     _choices = choices;
@@ -127,8 +132,10 @@ static const float collapseAnimationDuration = 0.5;
     
     self.frame = CGRectMake(0,0, parentWidth, parentHeight);
     
-    
-    _mainButton.frame = CGRectMake((width -_mainButtonImage.size.width)/2, height - _mainButtonImage.size.height, _mainButtonImage.size.width, _mainButtonImage.size.height);
+    if (CGPointEqualToPoint(_mainBtnCustomOrigin, CGPointZero)) {
+        _mainBtnCustomOrigin=CGPointMake((width -_mainButtonImage.size.width)/2, height - _mainButtonImage.size.height);
+    }
+    _mainButton.frame = CGRectMake(_mainBtnCustomOrigin.x,_mainBtnCustomOrigin.y, _mainButtonImage.size.width, _mainButtonImage.size.height);
     
     for (int i = 0;i<_choices.count;i++){
         UIButton *button = [[UIButton alloc]initWithFrame:CGRectZero];

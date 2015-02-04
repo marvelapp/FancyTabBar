@@ -15,5 +15,5 @@
 @property(nonatomic,weak) id<FancyTabBarDelegate> delegate;
 
 - (void) setUpChoices:(UIViewController*) parentViewController choices:(NSArray*) choices withMainButtonImage:(UIImage*)mainButtonImage;
-
+- (void) setUpChoices:(UIViewController*) parentViewController choices:(NSArray*) choices withMainButtonImage:(UIImage*)mainButtonImage andMainButtonCustomOrigin:(CGPoint)customOrigin;
 @end
