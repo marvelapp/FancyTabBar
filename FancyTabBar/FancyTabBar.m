@@ -173,6 +173,10 @@ static const float collapseAnimationDuration = 0.5;
         int tag = (i+1)*subviewTagConstant;
         Coordinate *coordinate = [[Coordinate alloc] init];
         float radian = (degrees*(i)*M_PI)/180;
+        if (_currentDirectionToPopOptions==FancyTabBarItemsPop_Down) {
+            //Pop Option Buttons Down
+            radian = (degrees*(i)*M_PI)/-180;
+        }
         float cosineRadian = cosf(radian);
         float sineRadian = sinf(radian);
         

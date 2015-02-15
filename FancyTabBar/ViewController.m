@@ -25,8 +25,10 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     _fancyTabBar = [[FancyTabBar alloc]initWithFrame:self.view.bounds];
-    [_fancyTabBar setUpChoices:self choices:@[@"gallery",@"dropbox",@"camera",@"draw"] withMainButtonImage:[UIImage imageNamed:@"main_button"]];
-    //Custom Placement
+    [_fancyTabBar setUpChoices:self choices:@[@"gallery",@"dropbox",@"camera",@"draw"] withMainButtonImage:[UIImage imageNamed:@"main_button"]];    
+//    //Set Pop Items Direction
+//    _fancyTabBar.currentDirectionToPopOptions=FancyTabBarItemsPop_Down;
+//    //Custom Placement
 //    [_fancyTabBar setUpChoices:self choices:@[@"gallery",@"dropbox",@"camera",@"draw"] withMainButtonImage:[UIImage imageNamed:@"main_button"] andMainButtonCustomOrigin:CGPointMake(100, 100)];
     _fancyTabBar.delegate = self;
     [self.view addSubview:_fancyTabBar];
