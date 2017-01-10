@@ -10,6 +10,7 @@
 #import "UIView+Screenshot.h"
 #import "UIImage+ImageEffects.h"
 #import "FancyTabBar.h"
+#import "Coordinate.h"
 
 @interface ViewController ()<FancyTabBarDelegate>
 
@@ -25,7 +26,13 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     _fancyTabBar = [[FancyTabBar alloc]initWithFrame:self.view.bounds];
-    [_fancyTabBar setUpChoices:self choices:@[@"gallery",@"dropbox",@"camera",@"draw"] withMainButtonImage:[UIImage imageNamed:@"main_button"]];    
+    Coordinate *c1 = [[Coordinate alloc] init];
+    c1.y = @([UIScreen mainScreen].bounds.size.height - 88.0f - 109.0f);
+    c1.x = @75.0f;
+    Coordinate *c2 = [[Coordinate alloc] init];
+    c2.y = c1.y;
+    c2.x = @(88.0f + 50.0f + c1.x.doubleValue);
+    [_fancyTabBar setUpChoices:self choices:@[@"camera",@"draw"] withMainButtonImage:[UIImage imageNamed:@"main_button"] andMainButtonCustomOrigin:CGPointMake(100.0f, 100.0f) choicesCoordinates:@[c1, c2]];
 //    //Set Pop Items Direction
 //    _fancyTabBar.currentDirectionToPopOptions=FancyTabBarItemsPop_Down;
 //    //Custom Placement

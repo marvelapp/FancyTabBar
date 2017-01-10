@@ -33,7 +33,8 @@ static const float collapseAnimationDuration = 0.5;
 @property(nonatomic,strong) UIView *backgroundView;
 @property(nonatomic,strong) UIDynamicAnimator *dynamicsAnimator;
 @property(nonatomic,strong) UIDynamicBehavior *dynamicBehaviour;
-@property (assign, nonatomic) CGPoint mainBtnCustomOrigin;
+@property(assign, nonatomic) CGPoint mainBtnCustomOrigin;
+@property(nonatomic, copy) NSArray *choiceCoordinates;
 
 @property(nonatomic,weak) UIViewController *parentViewController;
 
@@ -78,6 +79,10 @@ static const float collapseAnimationDuration = 0.5;
 {
     _mainBtnCustomOrigin=customOrigin;
     [self setUpChoices:parentViewController choices:choices withMainButtonImage:mainButtonImage];
+}
+- (void) setUpChoices:(UIViewController *)parentViewController choices:(NSArray *)choices withMainButtonImage:(UIImage *)mainButtonImage andMainButtonCustomOrigin:(CGPoint)customOrigin choicesCoordinates:(NSArray *)choicesCoordinates {
+    self.choiceCoordinates = choicesCoordinates;
+    [self setUpChoices:parentViewController choices:choices withMainButtonImage:mainButtonImage andMainButtonCustomOrigin:customOrigin];
 }
 - (void) setUpChoices:(UIViewController*) parentViewController choices:(NSArray*) choices withMainButtonImage:(UIImage*)mainButtonImage{
     _parentViewController = parentViewController;
@@ -158,43 +163,49 @@ static const float collapseAnimationDuration = 0.5;
         [self addSubview:button];
     }
     
-    float plane = (parentWidth)-2*PADDING;
-    float radius = plane/3;
-    float xCentre = _mainButton.center.x;
-    float yCentre = _mainButton.center.y;
-    
-    
-    float x;
-    float y;
-    
-    float degrees = 180/(_choices.count-1);
-    
-    for (int i=0; i < _choices.count; i++) {
-        int tag = (i+1)*subviewTagConstant;
-        Coordinate *coordinate = [[Coordinate alloc] init];
-        float radian = (degrees*(i)*M_PI)/180;
-        if (_currentDirectionToPopOptions==FancyTabBarItemsPop_Down) {
-            //Pop Option Buttons Down
-            radian = (degrees*(i)*M_PI)/-180;
+    if (!self.choiceCoordinates && self.choiceCoordinates.count == _choices.count) {
+        float plane = (parentWidth)-2*PADDING;
+        float radius = plane/3;
+        float xCentre = _mainButton.center.x;
+        float yCentre = _mainButton.center.y;
+        
+        
+        float x;
+        float y;
+        
+        float degrees = 180/(_choices.count-1);
+        
+        for (int i=0; i < _choices.count; i++) {
+            int tag = (i+1)*subviewTagConstant;
+            Coordinate *coordinate = [[Coordinate alloc] init];
+            float radian = (degrees*(i)*M_PI)/180;
+            if (_currentDirectionToPopOptions==FancyTabBarItemsPop_Down) {
+                //Pop Option Buttons Down
+                radian = (degrees*(i)*M_PI)/-180;
+            }
+            float cosineRadian = cosf(radian);
+            float sineRadian = sinf(radian);
+            
+            float radiusLengthX = (radius * cosineRadian);
+            float radiusLengthY = (radius * sineRadian);
+            
+            x = xCentre + radiusLengthX;
+            y = yCentre - radiusLengthY;
+            
+            coordinate.x = [NSNumber numberWithInt:x];
+            coordinate.y = [NSNumber numberWithInt:y];
+            
+            coordinate.x = [NSNumber  numberWithInt:x];
+            
+            coordinate.y = [NSNumber numberWithFloat:y];
+            [_destinationCoordinateDictionary setObject:coordinate forKey:[NSNumber numberWithInt:tag]];
         }
-        float cosineRadian = cosf(radian);
-        float sineRadian = sinf(radian);
-        
-        float radiusLengthX = (radius * cosineRadian);
-        float radiusLengthY = (radius * sineRadian);
-        
-        x = xCentre + radiusLengthX;
-        y = yCentre - radiusLengthY;
-        
-        coordinate.x = [NSNumber numberWithInt:x];
-        coordinate.y = [NSNumber numberWithInt:y];
-        
-        coordinate.x = [NSNumber  numberWithInt:x];
-        
-        coordinate.y = [NSNumber numberWithFloat:y];
-        [_destinationCoordinateDictionary setObject:coordinate forKey:[NSNumber numberWithInt:tag]];
+    } else {
+        for (int i = 0; i < self.choiceCoordinates.count; i++) {
+            int tag = (i + 1) * subviewTagConstant;
+            [_destinationCoordinateDictionary setObject:self.choiceCoordinates[i] forKey:@(tag)];
+        }
     }
-    
 }
 
 #pragma mark - animation
