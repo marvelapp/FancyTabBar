@@ -236,6 +236,9 @@
 			attributes = {
 				LastUpgradeCheck = 0510;
 				TargetAttributes = {
+					AB8F048819B6FEAB004CFDED = {
+						DevelopmentTeam = 7H6KWF2CU7;
+					};
 					AB8F04A919B6FEAC004CFDED = {
 						TestTargetID = AB8F048819B6FEAB004CFDED;
 					};
@@ -417,6 +420,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = 7H6KWF2CU7;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FancyTabBar/FancyTabBar-Prefix.pch";
 				INFOPLIST_FILE = "FancyTabBar/FancyTabBar-Info.plist";
@@ -430,6 +434,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = 7H6KWF2CU7;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FancyTabBar/FancyTabBar-Prefix.pch";
 				INFOPLIST_FILE = "FancyTabBar/FancyTabBar-Info.plist";
@@ -497,6 +502,7 @@
 				AB8F04BD19B6FEAC004CFDED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AB8F04BE19B6FEAC004CFDED /* Build configuration list for PBXNativeTarget "FancyTabBarTests" */ = {
 			isa = XCConfigurationList;
@@ -505,6 +511,7 @@
 				AB8F04C019B6FEAC004CFDED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
