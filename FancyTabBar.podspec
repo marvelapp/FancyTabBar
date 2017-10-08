@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "FancyTabBar"
-  s.version      = "0.0.1"
+  s.version      = "v0.0.1"
   s.summary      = "An expandable and customisable tabbar for iOS"
 
   s.homepage     = "https://github.com/marvelapp/FancyTabBar"
