@@ -5,10 +5,9 @@ Pod::Spec.new do |s|
 
   s.homepage     = "https://github.com/marvelapp/FancyTabBar"
 
-  s.license      = ""
-  # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
+  s.license    = { :type => "MIT", :file => "LICENSE" }
 
-  s.author             = { "marvelapp" => "" }
+  s.author       = { "marvelapp" => "" }
 
   s.source       = { :git => "git@github.com:marvelapp/FancyTabBar.git", :tag => "#{s.version}" }
 
