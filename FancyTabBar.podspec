@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
 
   s.author       = { "marvelapp" => "" }
 
-  s.source       = { :git => "git@github.com:daviskoh/FancyTabBar.git", :tag => "#{s.version}" }
+  s.source       = { :git => "git@github.com:marvelapp/FancyTabBar.git", :tag => "#{s.version}" }
 
   s.source_files  = "FancyTabBarDelegate", "FancyTabBar/*.{h,m}"
 
